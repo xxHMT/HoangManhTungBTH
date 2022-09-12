@@ -1,14 +1,14 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using HoangManhTungBTH.Models;
 
 namespace HoangManhTungBTH.Controllers;
 
-public class HomeController : Controller
+public class EmployeeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly ILogger<EmployeeController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    public EmployeeController(ILogger<EmployeeController> logger)
     {
         _logger = logger;
     }
@@ -19,9 +19,9 @@ public class HomeController : Controller
     }
     [HttpPost]
 
-    public IActionResult Index(string FullName, string Email)
+    public IActionResult Index(Employee std)
     {
-        ViewBag.name = "Hello "  +FullName + "-" + Email;
+        ViewBag.mess = std.EmployeeID + "-" + std.EmployeeName + "-" + std.EmployeeAge;
         return View();
     }
 
