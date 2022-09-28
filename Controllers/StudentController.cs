@@ -1,38 +1,31 @@
-using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
 using HoangManhTungBTH.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HoangManhTungBTH.Controllers;
 
 public class StudentController : Controller
 {
-    private readonly ILogger<StudentController> _logger;
-
-    public StudentController(ILogger<StudentController> logger)
-    {
-        _logger = logger;
-    }
-
     public IActionResult Index()
     {
-        return View();
+        List<Student> stdList = new List<Student>()
+        {
+            new Student {StudentID = 1, StudentName = "Hoàng Mạnh Tùng", StudentAge = 20},
+            new Student {StudentID = 2, StudentName = "B", StudentAge = 21},
+            new Student {StudentID = 3, StudentName = "C", StudentAge = 22},
+            new Student {StudentID = 4, StudentName = "D", StudentAge = 23},
+        };
+        ViewData["StudentList"] = stdList;
+        return View(stdList);
     }
     [HttpPost]
 
-    public IActionResult Index(Student std)
+    public IActionResult Create (Student std)
     {
-        ViewBag.mess = std.StudentID + "-" + std.StudentName + "-" + std.StudentAge;
+        string message = std.StudentID + "-";
+        message += std.StudentName + "-";
+        message += std.StudentAge + "-";
+        ViewBag.TT = message;
         return View();
     }
 
-    public IActionResult Privacy() 
-    {
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
 }

@@ -1,15 +1,26 @@
+<h2>Danh sách sinh viên lớp THKT K64B</h2>
+<hr>
+<table class="table table-all">
+    <tr>
+        <th>
+            <label>Mã sinh viên:</label>
+        </th>
 
-<h2>Nhập vào thông tin học sinh:</h2>
-<form asp-action ="Index">
-    <label>Enter Your ID:</label>
-    <input type="number" name="StudentID">
-    <br>
-    <label>Enter Your Name:</label>
-    <input type="text" name="StudentName">
-    <br>
-    <label>Enter Your Age:</label>
-    <input type="number" name="StudentAge">
-    <br>
-    <input type="submit" value="Save">
-</form>
-<h2>@ViewBag.mess</h2> 
+        <th>
+            <label>Họ tên sinh viên:</label>
+        </th>
+
+        <th>
+            <label>Tuổi:</label>
+        </th>
+    </tr>
+    @foreach (var item in ViewData["StudentList"] as List<Student>)
+    {
+        <tr>
+            <td>@item.StudentID</td>
+            <td>@item.StudentName</td>
+            <td>@item.StudentAge</td>
+        </tr>
+
+    }
+</table>
